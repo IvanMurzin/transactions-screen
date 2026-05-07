@@ -1,0 +1,8 @@
+supabase/.temp/
+supabase/.branches/
+supabase/.cache/
+supabase/seed.local.sql
+.env
+.env.dev
+.env.prod
+.DS_Store

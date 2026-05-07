@@ -1,0 +1,5 @@
+// Dev flavor overrides — included by Debug-dev / Release-dev / Profile-dev configs.
+PRODUCT_BUNDLE_IDENTIFIER = com.example.appname.dev
+DISPLAY_NAME = Template App (dev)
+DEEP_LINK_SCHEME = appnamedev
+ASSET_CATALOG_APP_ICON_NAME = AppIcon-dev

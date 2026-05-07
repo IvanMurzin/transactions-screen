@@ -1,0 +1,55 @@
+# --- Secrets and runtime config (NEVER commit) ---
+.env
+.env.*
+!.env.example
+.config.dev.json
+.config.prod.json
+client/android/key.properties
+client/android/app/google-services.json
+client/ios/Runner/GoogleService-Info.plist
+
+# --- Generated code (regen via build_runner / l10n) ---
+*.freezed.dart
+*.g.dart
+client/lib/core/di/injectable.config.dart
+client/lib/l10n/app_localizations*.dart
+client/lib/l10n/supabase_error_localization_*.dart
+
+# --- Flutter / Dart ---
+.fvm/
+client/.dart_tool/
+client/.flutter-plugins
+client/.flutter-plugins-dependencies
+client/.packages
+client/.pub-cache/
+client/.pub/
+client/build/
+client/coverage/
+
+# --- IDE / OS ---
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/launch.json
+!.vscode/settings.template.json
+*.iml
+
+# --- Android ---
+client/android/.gradle/
+client/android/local.properties
+client/android/app/release/
+client/android/keystores/
+client/android/captures/
+
+# --- iOS ---
+client/ios/Pods/
+client/ios/Podfile.lock
+client/ios/Runner.xcworkspace/xcuserdata/
+client/ios/Runner.xcodeproj/xcuserdata/
+client/ios/Runner.xcodeproj/project.xcworkspace/xcuserdata/
+client/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+
+# --- Supabase local ---
+backend/supabase/.branches/
+backend/supabase/.temp/
+backend/supabase/seed.local.sql

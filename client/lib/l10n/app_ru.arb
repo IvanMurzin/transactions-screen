@@ -1,0 +1,12 @@
+{
+  "@@locale": "ru",
+  "appTitle": "Шаблон приложения",
+  "commonOk": "ОК",
+  "commonCancel": "Отмена",
+  "commonRetry": "Повторить",
+  "errorUnknown": "Что-то пошло не так. Попробуйте ещё раз.",
+  "designSystemPreviewTitle": "Превью дизайн-системы",
+  "exampleHomeTitle": "Добро пожаловать",
+  "exampleHomeBody": "Это пример экрана — замените его своей первой фичей.",
+  "exampleHomeOpenDesignSystem": "Открыть превью дизайн-системы"
+}

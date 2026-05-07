@@ -1,0 +1,15 @@
+{
+  "@@locale": "en",
+  "appTitle": "Template App",
+  "@appTitle": {
+    "description": "User-visible application name shown on launch and in About sections."
+  },
+  "commonOk": "OK",
+  "commonCancel": "Cancel",
+  "commonRetry": "Retry",
+  "errorUnknown": "Something went wrong. Please try again.",
+  "designSystemPreviewTitle": "Design system preview",
+  "exampleHomeTitle": "Welcome",
+  "exampleHomeBody": "This is a placeholder screen — replace it with your first feature.",
+  "exampleHomeOpenDesignSystem": "Open design system preview"
+}

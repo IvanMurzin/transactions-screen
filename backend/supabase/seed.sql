@@ -1,0 +1,7 @@
+-- Local seed data for `supabase db reset`.
+--
+-- This file runs after every migration when you reset the local
+-- database. Keep it idempotent: every statement should be safe to run
+-- multiple times. Use `INSERT ... ON CONFLICT DO NOTHING` for fixtures.
+--
+-- The template ships empty. Add reference data your features need below.

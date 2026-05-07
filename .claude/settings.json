@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(flutter pub get)",
+      "Bash(flutter pub upgrade)",
+      "Bash(flutter analyze)",
+      "Bash(flutter test)",
+      "Bash(flutter clean)",
+      "Bash(flutter run *)",
+      "Bash(flutter build *)",
+      "Bash(dart format *)",
+      "Bash(dart run *)",
+      "Bash(dart test *)",
+      "Bash(supabase --workdir backend *)",
+      "Bash(supabase db reset)",
+      "Bash(supabase gen types *)",
+      "Bash(./scripts/check.sh)",
+      "Bash(./scripts/format.sh)",
+      "Bash(./scripts/analyze.sh)",
+      "Bash(./scripts/check-ai-consistency.sh)",
+      "Bash(./scripts/update-spec-index.sh)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git show *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git checkout -b *)",
+      "Bash(git branch *)"
+    ],
+    "deny": [
+      "Bash(git push *)",
+      "Bash(git push --force *)",
+      "Bash(rm -rf *)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean -f*)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./scripts/check.sh",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}
