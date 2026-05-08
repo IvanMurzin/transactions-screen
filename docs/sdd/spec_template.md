@@ -11,6 +11,8 @@ depends_on: []   # ["SPEC-0003", "BUG-0007"]
 blocks: []
 related_specs: []
 product_docs: []  # ["docs/product/mvp_scope.md#section"]
+allowed_change_areas: []  # ["client/lib/features/auth/**", "test/features/auth/**"]
+forbidden_change_areas: []  # ["backend/supabase/migrations/**", ".env*"]
 ---
 
 # <Same as frontmatter title>
@@ -26,6 +28,17 @@ from the user's perspective.
 ## Non-goals
 What this spec explicitly does **not** do. Use this section to fence
 scope creep early.
+
+## Allowed change areas
+Optional but recommended for orchestrated implementation. Keep explicit
+path globs. Hook guards can enforce this.
+
+- `client/lib/...`
+
+## Forbidden change areas
+Optional deny-list for risky zones that must stay untouched.
+
+- `backend/supabase/migrations/...`
 
 ## User stories
 - As a <role>, I can <capability>, so that <outcome>.

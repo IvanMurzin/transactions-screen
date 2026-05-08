@@ -2,15 +2,20 @@
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
     "allow": [
+      "Read(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "Edit(*)",
+      "MultiEdit(*)",
+      "Write(.agent/state/*)",
+      "Write(docs/specs/**)",
       "Bash(flutter pub get)",
       "Bash(flutter pub upgrade)",
       "Bash(flutter analyze)",
       "Bash(flutter test)",
       "Bash(flutter clean)",
       "Bash(flutter run *)",
-      "Bash(flutter build *)",
       "Bash(dart format *)",
-      "Bash(dart run *)",
       "Bash(dart test *)",
       "Bash(supabase --workdir backend *)",
       "Bash(supabase db reset)",
@@ -29,22 +34,50 @@
       "Bash(git checkout -b *)",
       "Bash(git branch *)"
     ],
+    "ask": [
+      "Bash(flutter build *)",
+      "Bash(dart run build_runner *)"
+    ],
     "deny": [
       "Bash(git push *)",
       "Bash(git push --force *)",
       "Bash(rm -rf *)",
       "Bash(git reset --hard *)",
-      "Bash(git clean -f*)"
+      "Bash(git clean -f*)",
+      "Bash(sudo *)",
+      "Bash(chmod -R *)",
+      "Bash(chown -R *)",
+      "Write(.env*)",
+      "Write(**/*secret*)",
+      "Write(**/*keystore*)",
+      "Write(**/*key*)"
     ]
   },
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./scripts/hooks/require-active-spec.sh",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "./scripts/hooks/guard-spec-scope.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "matcher": "*",
         "hooks": [
           {
             "type": "command",
-            "command": "./scripts/check.sh",
+            "command": "./scripts/check-ai-consistency.sh",
             "timeout": 120
           }
         ]

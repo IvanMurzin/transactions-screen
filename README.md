@@ -1,148 +1,237 @@
-# sdd_template
+# sdd_template: 0 → MVP Guide
 
-Reusable starter for Flutter + Supabase apps with **spec-driven
-development** baked in. Optimised for both Claude Code and Codex.
+Flutter + Supabase starter with strict Spec-Driven Development (SDD).
+This README is a practical runbook: from empty clone to working MVP.
 
-## What you get
+## Project description
 
-### Architecture
+`sdd_template` is a production-oriented template for mobile products on
+Flutter + Supabase. It is designed for teams that want predictable MVP
+delivery through small specs, strict architecture boundaries, and
+repeatable verification.
 
-- Flutter client with iOS + Android flavors (`dev` / `prod`),
-  `flutter_bloc` + `go_router` + `get_it` / `injectable`, neutral
-  design-system scaffold, EN + RU localization.
-- Supabase backend with **RLS-by-default** + edge functions,
-  generic helpers (`_shared/{auth, cors, db, env, responses,
-  validation}`), single authenticated `api/` function with the
-  envelope `{ ok, data | error }`.
-- Firebase Analytics + Crashlytics and RevenueCat — prepared but
-  disabled by default; opt in via `.config.<flavor>.json`.
+The template gives you:
+- a ready client/backend foundation
+- built-in SDD process and documentation contracts
+- AI-assisted workflows (Claude/Codex) with guard rails
+- a safe path from product docs to incremental local commits
 
-### Universal modules (no UI — only domain + data + state)
+Result: you build MVP as a sequence of small, reviewable vertical
+slices instead of one large rewrite.
 
-These ship working out of the box; you write the UI:
+## 1) What this template gives you
 
-- **Auth** — email + password, optional OTP (`IS_OTP_ENABLED`),
-  Google / Apple OAuth (gated on `OAUTH_REDIRECT_URI`). 10 use
-  cases, repository, data source, AuthCubit, AuthRouteGuard.
-- **Profile** — universal fields (`userId, email, displayName,
-  avatarUrl, locale, plan, revenuecatAppUserId, createdAt,
-  updatedAt`), get / partial-update use cases, ProfileCubit.
-- **Sessions** — `UnauthorizedNotifier` + `AuthCubit.forceLocalSignOut()`
-  drop the local session on backend 401 without thrashing Supabase.
-- **Subscriptions** — RevenueCat-bound. Source of truth is
-  `profiles.plan`, refreshed via the webhook and
-  `/api/revenuecat/refresh`. SubscriptionCubit binds the RC
-  identity on every authenticated session automatically.
+- Flutter client (iOS/Android), `flutter_bloc`, `go_router`,
+  `get_it`/`injectable`, design-system scaffold, EN/RU localization.
+- Supabase backend with RLS-first model + Edge Functions + RPC pattern.
+- Prepared integrations (Firebase/RevenueCat), disabled by default.
+- SDD workflow with specs, lifecycle, templates, and index tooling.
+- AI workflows for Claude (`.claude/*`) and Codex (`.agents/*`) with
+  parity checks.
 
-Backend ships the matching migrations: `profiles`, `webhook_events`,
-`handle_new_user` trigger, RLS lock-down, `api_get_me`,
-`api_profile_update`, `api_apply_revenuecat_event`, plus the
-`revenuecat_webhook` edge function.
+## 2) Prerequisites
 
-See [`docs/client/auth_profile_subscriptions.md`](docs/client/auth_profile_subscriptions.md)
-for the practical guide and a sequenced list of suggested first specs.
-
-### Spec-driven development
-
-- Constitution, spec lifecycle (`draft → open → planned →
-  in_progress → review → done`), spec / plan / tasks templates,
-  Definition of Done, auto-generated `INDEX.md`.
-- Skills shared between Claude (`.claude/skills/*`) and Codex
-  (`.agents/skills/*`): `bootstrap`, `create-product`,
-  `review-core-ui`, `plan-feature`, `create-spec`, `resolve-spec`,
-  `check-ai-consistency`.
-- Subagents in `.claude/agents/` and `.agents/agents/` for review
-  / research workflows: `sdd-spec-reviewer`, `flutter-architect`,
-  `supabase-architect`, `core-ui-reviewer`.
-
-### Tooling
-
-- `bootstrap.sh` — renames the package, scaffolds flavors, runs
-  `flutter pub get` + `build_runner`, format + analyze, and creates a
-  clean git repo/first commit (`--reinit-git` for cloned templates).
-- `check.sh`, `format.sh`, `analyze.sh`, `check-ai-consistency.sh`,
-  `update-spec-index.sh`, `supabase-reset.sh`, `supabase-typegen.sh`.
-- `.claude/settings.json` Stop hook runs `check.sh` after every
-  Claude session.
-- Tracked DX defaults: `.vscode/launch.json` and `client/pubspec.lock`.
-
-### Flutter toolchain pin
-
-- Project Flutter pin: `3.38.7` in [`.fvmrc`](.fvmrc).
-- `client/pubspec.yaml` constrains SDK to Dart `^3.10.0` and
-  Flutter `>=3.38.7 <4.0.0`.
-- Optional (recommended): use FVM so this repo does not affect other
-  projects:
-  - `dart pub global activate fvm`
-  - `fvm install 3.38.7`
-  - run Flutter/Dart commands via `fvm flutter ...` / `fvm dart ...`.
-
-## Use it
+- Flutter SDK pinned in [`.fvmrc`](.fvmrc) (`3.38.7`).
+- Dart/Flutter compatible with `client/pubspec.yaml`.
+- Supabase CLI (for local/db workflows).
+- Optional but recommended: FVM.
 
 ```bash
-# 1. Clone the template into a new project dir (do NOT work inside sdd_template)
-git clone <YOUR_TEMPLATE_REPO_URL> ~/projects/myapp
-cd ~/projects/myapp
-
-# 2. Bootstrap. Renames package, runs build_runner so generated files exist,
-#    runs format + analyze, removes template .git, then creates a clean repo
-#    with the first commit.
-./scripts/bootstrap.sh --app-name "My App" --app-id com.acme.myapp --reinit-git
-
-# 3. Fill secrets (see docs/configuration/env_and_configs.md):
-#      .config.dev.json, .config.prod.json   — client config
-#      .env                                  — backend deploy + RevenueCat secrets
-#
-# 4. Push backend (optional until you start writing features):
-./backend/scripts/deploy_supabase.sh
-
-# 5. From here, drive everything through skills:
-#      /create-product           — fill docs/product/*
-#      /plan-feature             — break a feature area into specs
-#      /create-spec              — capture one focused change
-#      /resolve-spec SPEC-####   — implement an existing spec
+dart pub global activate fvm
+fvm install 3.38.7
 ```
 
-## Suggested first specs
+## 3) Bootstrap a new app (day 0)
 
-The template intentionally ships no auth UI — products own
-presentation. The fastest path to a working app:
+Do not develop inside this template repo. Clone into a new project dir.
 
-1. **SPEC-0001 — Sign-in page** wired to `SignInWithPasswordUseCase`.
-2. **SPEC-0002 — Sign-up page**, branching on `AppConfig.isOtpEnabled`.
-3. **SPEC-0003 — Wire `AuthRouteGuard`** (one-line change in `app.dart`).
-4. **SPEC-0004 — Profile screen** reading from `ProfileCubit`.
-5. **SPEC-0005 — Edit profile** form bound to `ProfileCubit.updateProfile`.
-6. **SPEC-0006 — Paywall + subscription gate** branching on
-   `SubscriptionState.isPro`.
+```bash
+git clone <YOUR_TEMPLATE_REPO_URL> ~/projects/myapp
+cd ~/projects/myapp
+./scripts/bootstrap.sh --app-name "My App" --app-id com.acme.myapp --reinit-git
+```
 
-Each spec is small, observable on its own, and exercises code that
-already ships. Details and patterns:
-[`docs/client/auth_profile_subscriptions.md`](docs/client/auth_profile_subscriptions.md).
+What bootstrap does:
+- renames package/bundle ids
+- scaffolds flavor configs
+- runs `flutter pub get` + codegen
+- runs format/analyze
+- reinitializes git and creates first commit
 
-## Manual setup after bootstrap
+## 4) Configure secrets and env
 
-The bootstrap output prints a checklist; the highlights:
+Fill local untracked files from examples:
 
-- `google-services.json` (Android) and `GoogleService-Info.plist`
-  (iOS), then `ENABLE_FIREBASE=true` in `.config.<flavor>.json`.
-- Real RevenueCat **public SDK** key, then `ENABLE_REVENUECAT=true`.
-  Plus the **server** key + `REVENUECAT_WEBHOOK_SECRET` in `.env`
-  if subscriptions are live.
-- `SUPABASE_URL` and `SUPABASE_ANON_KEY` in `.config.<flavor>.json`.
-- Configure Supabase Auth providers (email + Google / Apple) in
-  the Supabase dashboard if OAuth is enabled.
-- App icons, native splash, signing.
+- `.config.dev.json`
+- `.config.prod.json`
+- `.env`
 
-## Where to look next
+Reference: [docs/configuration/env_and_configs.md](docs/configuration/env_and_configs.md)
 
-| Doc | Why |
-| --- | --- |
-| [`CLAUDE.md`](CLAUDE.md) / [`AGENTS.md`](AGENTS.md) | Full project guide for the AI tools (kept in sync). |
-| [`docs/README.md`](docs/README.md) | Map of all documentation sections. |
-| [`docs/architecture/overview.md`](docs/architecture/overview.md) | The three-tier model and the API envelope. |
-| [`docs/contracts/api-surface.md`](docs/contracts/api-surface.md) | Every edge-function route the template ships. |
-| [`docs/configuration/env_and_configs.md`](docs/configuration/env_and_configs.md) | Every config and env key. |
-| [`docs/sdd/how_to_use_sdd.md`](docs/sdd/how_to_use_sdd.md) | The spec workflow end to end. |
-| [`docs/troubleshooting.md`](docs/troubleshooting.md) | Common failures during bootstrap, build, deploy. |
-| [`docs/template_migration_report.md`](docs/template_migration_report.md) | What was extracted from the source project, what was rewritten, what was intentionally left out. |
+Hard rules:
+- never commit real keys/secrets
+- keep only placeholders in tracked files
+
+## 5) Initialize product and design docs (before feature coding)
+
+You need product truth first, then specs.
+
+Recommended sequence:
+1. `create-product` skill → fill `docs/product/*`
+2. verify/adjust `docs/design_system/*` and architecture docs
+3. only then start implementation specs
+
+Useful docs:
+- [docs/README.md](docs/README.md)
+- [docs/architecture/overview.md](docs/architecture/overview.md)
+- [docs/sdd/how_to_use_sdd.md](docs/sdd/how_to_use_sdd.md)
+
+## 6) Spec workflow (core rule: no implementation without spec)
+
+Spec directories:
+- `docs/specs/open/*`
+- `docs/specs/closed/*`
+- `docs/specs/archive/*`
+- `docs/specs/INDEX.md`
+
+Lifecycle:
+`draft → open → planned → in_progress → review → done`
+
+References:
+- [docs/specs/README.md](docs/specs/README.md)
+- [docs/sdd/spec_lifecycle.md](docs/sdd/spec_lifecycle.md)
+- [docs/sdd/spec_template.md](docs/sdd/spec_template.md)
+
+## 7) MVP orchestration mode
+
+This repo includes `mvp-orchestrator` skill and dedicated subagents:
+
+- `sdd-backlog-planner`
+- `sdd-spec-implementer`
+- `sdd-implementation-reviewer`
+- plus architecture/design reviewers
+
+State file:
+- `.agent/state/mvp-orchestrator.json`
+
+### Start command (single-spec batch)
+
+Use this instruction in Claude/Codex:
+
+```text
+/mvp-orchestrator
+
+Product docs and design system docs are already prepared.
+
+Run the MVP SDD workflow.
+- create missing MVP specs if needed
+- review specs before implementation
+- implement max 1 spec in this run
+- run checks
+- make one local commit
+- do not push
+- stop on blocker
+```
+
+### Continue command (multi-spec batch)
+
+```text
+/mvp-orchestrator
+
+Continue from .agent/state/mvp-orchestrator.json.
+Implement max 3 specs.
+One spec = one branch = one local commit.
+Stop on first blocker.
+Do not push.
+```
+
+## 8) Guard rails (hooks + permissions)
+
+Configured in `.claude/settings.json`:
+
+- `PreToolUse` guards:
+  - require active spec for code edits (`client/lib`, `backend`)
+  - enforce spec scope via `allowed_change_areas`
+- `Stop` hook:
+  - runs `scripts/check-ai-consistency.sh`
+
+Hook scripts:
+- `scripts/hooks/require-active-spec.sh`
+- `scripts/hooks/guard-spec-scope.sh`
+
+## 9) How to write specs so guards work well
+
+In spec frontmatter, fill:
+
+```yaml
+allowed_change_areas:
+  - client/lib/features/auth/**
+  - test/features/auth/**
+forbidden_change_areas:
+  - backend/supabase/migrations/**
+  - .env*
+```
+
+This gives deterministic scope enforcement during implementation.
+
+## 10) UI quality mode
+
+Added skill: `ui-ux-pro-max` (synced for Claude + Codex).
+
+Use it when task changes UI behavior/structure/quality:
+- new screens
+- component refactors
+- usability/a11y cleanup
+- design-system consistency review
+
+Source: [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)
+
+## 11) Verification commands
+
+From repo root:
+
+```bash
+./scripts/format.sh
+./scripts/analyze.sh
+./scripts/check-ai-consistency.sh
+./scripts/check.sh
+./scripts/update-spec-index.sh
+```
+
+From `client/`:
+
+```bash
+flutter pub get
+dart run build_runner build --delete-conflicting-outputs
+flutter analyze
+flutter test
+flutter run --flavor dev --dart-define-from-file=../.config.dev.json
+```
+
+## 12) Git policy
+
+- one spec = one branch = one PR
+- branch naming: `spec/SPEC-0001-short-title`
+- commit format: `spec(SPEC-####): <imperative summary>`
+- never auto-push to `main`
+- no force push
+
+## 13) Suggested path to first working MVP
+
+1. Setup + bootstrap + env config
+2. Product docs completed
+3. Design system docs confirmed
+4. Build MVP backlog (`plan-feature` / orchestrator backlog phase)
+5. Implement first vertical slice (1 spec)
+6. Run checks, commit locally
+7. Repeat spec-by-spec until MVP scope is complete
+
+Keep batches small. Stable cadence beats big rewrites.
+
+## 14) Quick links
+
+- [AGENTS.md](AGENTS.md)
+- [CLAUDE.md](CLAUDE.md)
+- [docs/README.md](docs/README.md)
+- [docs/troubleshooting.md](docs/troubleshooting.md)
+- [docs/contracts/api-surface.md](docs/contracts/api-surface.md)

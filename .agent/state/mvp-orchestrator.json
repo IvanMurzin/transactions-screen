@@ -1,0 +1,14 @@
+{
+  "mode": "mvp-orchestrator",
+  "product_docs_ready": true,
+  "design_system_ready": true,
+  "current_phase": "idle",
+  "current_spec": null,
+  "current_branch": null,
+  "batch_limit": 1,
+  "completed_specs": [],
+  "blocked_specs": [],
+  "last_commit": null,
+  "last_checks": [],
+  "notes": []
+}

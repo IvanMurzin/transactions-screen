@@ -28,6 +28,7 @@ Edge Functions over RLS-locked tables.
 │   ├── skills/         # Skills used by Codex.
 │   └── agents/         # Subagent prompts (review/research roles).
 ├── .claude/            # Claude Code equivalents (skills + agents + settings).
+├── .agent/state/       # Orchestrator runtime state between sessions.
 ├── scripts/            # bootstrap.sh, check.sh, format.sh, …
 └── tools/              # Ad-hoc tooling (empty by default).
 ```
@@ -165,6 +166,8 @@ Located in `.agents/skills/<name>/SKILL.md`. Listed by trigger:
 | `plan-feature` | Turning a product area into a sequenced set of specs. |
 | `create-spec` | Writing one focused, decision-complete spec. |
 | `resolve-spec` | Implementing an existing spec end-to-end. |
+| `mvp-orchestrator` | Coordinating backlog → spec → implement → review → checks → local commit. |
+| `ui-ux-pro-max` | UI/UX intelligence for design decisions, implementation, and quality review. |
 | `check-ai-consistency` | Verifying CLAUDE.md ↔ AGENTS.md and skill parity. |
 
 ## Subagents (role prompts)
@@ -172,6 +175,9 @@ Located in `.agents/skills/<name>/SKILL.md`. Listed by trigger:
 Located in `.agents/agents/`:
 
 - `sdd-spec-reviewer.md` — sharpens specs before they leave `draft`.
+- `sdd-backlog-planner.md` — turns product/design docs into MVP spec backlog.
+- `sdd-spec-implementer.md` — implements exactly one active spec.
+- `sdd-implementation-reviewer.md` — validates implementation vs active spec.
 - `flutter-architect.md` — reviews client architecture decisions.
 - `supabase-architect.md` — reviews backend / RLS / RPC decisions.
 - `core-ui-reviewer.md` — reviews DS coherence.

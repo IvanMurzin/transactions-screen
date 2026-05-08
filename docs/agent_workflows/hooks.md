@@ -1,19 +1,14 @@
 # Hooks
 
-The template ships exactly **one** hook: a `Stop` hook in
-`.claude/settings.json` that runs `scripts/check.sh` (format +
-analyze + AI consistency).
+The template now ships two guard rails in `.claude/settings.json`:
 
-## Why so few?
+- `PreToolUse` on `Edit|Write|MultiEdit`:
+  - `scripts/hooks/require-active-spec.sh`
+  - `scripts/hooks/guard-spec-scope.sh`
+- `Stop` hook running `scripts/check-ai-consistency.sh`.
 
-Hooks that run after every edit are slow and noisy. They also tend
-to mutate files unexpectedly. The template's stance:
-
-- Format and analyze near the end of work, not every edit.
-- Tests don't run automatically — they run on demand via
-  `flutter test`.
-- Prefer skills + scripts you can run manually over hooks that fire
-  silently.
+These hooks are intentionally narrow: they block code edits without an
+active spec state and reduce accidental scope creep.
 
 ## Adding a hook
 
@@ -39,7 +34,7 @@ If you need one, edit `.claude/settings.json`:
 
 Rules of thumb:
 
-- The hook must be fast (< 2s) or you'll regret it.
+- The hook must be fast (< 2s) unless it is a final `Stop` check.
 - The hook must not mutate many files.
 - The hook must work without secrets.
 - Document any new hook here.

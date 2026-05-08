@@ -21,8 +21,8 @@ done
 
 # --- 2. Same skill names mentioned in CLAUDE.md and AGENTS.md
 if [[ -f CLAUDE.md && -f AGENTS.md ]]; then
-  CLAUDE_SKILLS="$(grep -oE '\b(bootstrap|create-product|review-core-ui|plan-feature|create-spec|resolve-spec|check-ai-consistency)\b' CLAUDE.md | sort -u || true)"
-  AGENTS_SKILLS="$(grep -oE '\b(bootstrap|create-product|review-core-ui|plan-feature|create-spec|resolve-spec|check-ai-consistency)\b' AGENTS.md | sort -u || true)"
+  CLAUDE_SKILLS="$(grep -oE '\b(bootstrap|create-product|review-core-ui|plan-feature|create-spec|resolve-spec|check-ai-consistency|mvp-orchestrator|ui-ux-pro-max)\b' CLAUDE.md | sort -u || true)"
+  AGENTS_SKILLS="$(grep -oE '\b(bootstrap|create-product|review-core-ui|plan-feature|create-spec|resolve-spec|check-ai-consistency|mvp-orchestrator|ui-ux-pro-max)\b' AGENTS.md | sort -u || true)"
   if [[ "${CLAUDE_SKILLS}" == "${AGENTS_SKILLS}" ]]; then
     ok "CLAUDE.md and AGENTS.md mention the same skills"
   else
