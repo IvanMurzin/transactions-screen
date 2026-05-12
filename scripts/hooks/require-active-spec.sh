@@ -16,6 +16,27 @@ if ! grep -Eq '"file_path":"(client/lib/|backend/)' <<< "${payload}"; then
 fi
 
 if grep -Eq '"current_spec":[[:space:]]*null' "${STATE_FILE}"; then
-  echo "Blocked: current_spec is null in ${STATE_FILE}. Select or create an active spec first." >&2
+  current_blocked=$(python3 -c "
+import sys, json
+d = json.load(open('${STATE_FILE}'))
+blocked = d.get('blocked_specs', [])
+print(', '.join(blocked) if blocked else 'none')
+" 2>/dev/null || echo "unknown")
+
+  cat >&2 <<EOF
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BLOCKED: No active spec selected
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+You are trying to edit client/lib/ or backend/ without
+an active spec in ${STATE_FILE}.
+
+To proceed:
+  1. Pick a spec from docs/specs/open/
+  2. Set "current_spec": "SPEC-XXXX" in ${STATE_FILE}
+  3. Or run /mvp-orchestrator to let it select the next spec
+
+Blocked specs (do not retry): ${current_blocked}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EOF
   exit 2
 fi

@@ -70,6 +70,34 @@ A printed manual checklist:
 - [ ] Configure Android signing (`client/android/key.properties`).
 - [ ] Configure iOS signing & capabilities in Xcode.
 
+## Next steps after bootstrap
+
+Bootstrap only renames packages and verifies the Flutter toolchain.
+After it completes, follow this order:
+
+```
+Step 1: /create-product
+   Fill docs/product/* — product vision, audience, JTBD, MVP scope.
+   All future specs and the design system are derived from these docs.
+
+Step 2: /setup-design-system
+   Creates the full project DS from scratch using ui-ux-pro-max.
+   Generates tokens, typography, palette, and 14 core components
+   tailored to your product's brand and audience.
+   Required before any UI spec can be written or implemented.
+
+Step 3: /create-all-specs
+   Reads product docs + DS, breaks the product into all feature areas,
+   generates design docs per area (ui-ux-pro-max), creates all specs
+   with full technical + design + product detail.
+   Interactive — section by section.
+   After this: every spec is at status "open" and ready for development.
+
+Step 4: /mvp-orchestrator
+   Implements specs one by one, P0 first. Runs format + analyze + tests
+   after each spec. One spec → one subagent → one commit.
+```
+
 ## On failure
 
 If any step fails, the script aborts with a clear error. Re-run after

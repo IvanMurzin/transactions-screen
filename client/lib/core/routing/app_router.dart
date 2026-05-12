@@ -4,8 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:template_app/core/routing/app_page_transitions.dart';
 import 'package:template_app/core/routing/app_routes.dart';
 import 'package:template_app/core/routing/guards/route_guard.dart';
-import 'package:template_app/core_ui/preview/ds_preview_page.dart';
-import 'package:template_app/presentation/example/page/example_home_page.dart';
 
 /// Builds a [GoRouter] from a list of atomic [RouteGuard]-s.
 ///
@@ -38,14 +36,30 @@ GoRouter buildAppRouter({
       return null;
     },
     routes: [
+      // TODO(setup-product): replace with your first real screen.
+      // Wire AuthRouteGuard and add /sign-in, /sign-up routes once auth UI exists.
+      // See docs/architecture/patterns/auth_route_guard.md
       GoRoute(
         path: AppRoutes.home,
-        pageBuilder: (context, state) => slideTransition(context, state, const ExampleHomePage()),
-      ),
-      GoRoute(
-        path: AppRoutes.designSystem,
-        pageBuilder: (context, state) => slideTransition(context, state, const DSPreviewPage()),
+        pageBuilder: (context, state) =>
+            slideTransition(context, state, const _PlaceholderHomePage()),
       ),
     ],
   );
+}
+
+class _PlaceholderHomePage extends StatelessWidget {
+  const _PlaceholderHomePage();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Text(
+          'Run /setup-design-system, then /create-all-specs\nto start building your product.',
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+  }
 }

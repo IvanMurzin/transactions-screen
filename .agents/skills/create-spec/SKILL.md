@@ -15,7 +15,8 @@ when you already know what you want to change.
 - A proposal / RFC for an architectural change.
 
 For larger areas use `plan-feature`. For full product discovery use
-`create-product`.
+`create-product`. For breaking an entire product into specs use
+`create-all-specs`.
 
 ## How it behaves
 
@@ -32,11 +33,27 @@ For larger areas use `plan-feature`. For full product discovery use
    - Any backend / migration touch?
    - Any analytics impact?
    - Any product doc that motivates this?
-4. **Draft.** Fill `docs/sdd/spec_template.md` with everything you
-   know. Mark unknowns as `[OPEN]` rather than guessing.
-5. **Confirm.** Show the user the rendered spec; iterate until they
+4. **Design doc** — if the spec touches any UI screen:
+   - Check if `docs/design_system/system.md` exists (DS created).
+   - If DS not created: tell user to run `/setup-design-system` first.
+   - Invoke `ui-ux-pro-max` with product context + spec description
+     to produce screen wireframe descriptions, component list, state
+     variants, and transition specs.
+   - Save output to `docs/design_system/screens/<area>.md` (or
+     `docs/specs/open/feature/<ID>-<title>/design.md` for spec-local docs).
+   - Set `design_doc:` frontmatter to the saved path.
+5. **Draft.** Fill `docs/sdd/spec_template.md` fully:
+   - All frontmatter fields
+   - User scenarios (Given/When/Then, min 2)
+   - Functional requirements (FR-001…, min 3)
+   - Design requirements section (filled from ui-ux-pro-max output)
+   - Test requirements section (required test files)
+   - Acceptance criteria (min 3, always include test + analyze ACs)
+   - Success criteria (SC-001…)
+   Mark unknowns as `[OPEN]` rather than guessing.
+6. **Confirm.** Show the user the rendered spec; iterate until they
    accept it.
-6. **Write.** Save to
+7. **Write.** Save to
    `docs/specs/open/<type>/<ID>-<kebab-title>.md`.
    Run `scripts/update-spec-index.sh`.
 
@@ -45,6 +62,7 @@ For larger areas use `plan-feature`. For full product discovery use
 - Touch any source code.
 - Combine two requests into one spec.
 - Skip ACs because "it's obvious".
+- Skip the design doc step for UI-touching specs.
 
 ## Output
 
@@ -55,8 +73,10 @@ For larger areas use `plan-feature`. For full product discovery use
 
 ## Done when
 
-- Frontmatter has every required field (id, title, type, status,
-  priority, owner, created, updated).
-- ACs are binary and observable.
+- Frontmatter has every required field including `design_doc` if UI.
+- User scenarios with Given/When/Then present.
+- Functional requirements numbered FR-001…
+- ACs are binary and observable (min 3, includes test + analyze ACs).
+- Success criteria SC-001… present.
 - `Open questions` section contains only items the user agreed to
   defer; otherwise the status is `draft`, not `open`.

@@ -5,7 +5,6 @@
 /// [route_extra_args.dart].
 abstract final class AppRoutes {
   static const String home = '/';
-  static const String designSystem = '/design-system';
 
   // Auth — pages live in product code; constants ship in the template so
   // guards and routers can reference them before the UI is built.

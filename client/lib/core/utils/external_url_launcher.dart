@@ -1,4 +1,3 @@
-import 'package:template_app/core_ui/components/ds_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -20,7 +19,7 @@ Future<void> launchExternalUrl(
   final uri = Uri.tryParse(url);
   if (uri == null || (uri.scheme != 'http' && uri.scheme != 'https') || uri.host.isEmpty) {
     if (context.mounted) {
-      showDSSnackBar(context, variant: DSSnackBarVariant.error, message: errorMessage);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(errorMessage)));
     }
     return;
   }
@@ -28,11 +27,11 @@ Future<void> launchExternalUrl(
   try {
     final launched = await launcher(uri, mode: LaunchMode.externalApplication);
     if (!launched && context.mounted) {
-      showDSSnackBar(context, variant: DSSnackBarVariant.error, message: errorMessage);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(errorMessage)));
     }
   } catch (_) {
     if (context.mounted) {
-      showDSSnackBar(context, variant: DSSnackBarVariant.error, message: errorMessage);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(errorMessage)));
     }
   }
 }

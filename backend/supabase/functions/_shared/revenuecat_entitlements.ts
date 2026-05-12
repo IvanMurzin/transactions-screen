@@ -4,20 +4,20 @@
 //   - REVENUECAT_PRO_ENTITLEMENT="pro"             (single value)
 //   - REVENUECAT_PRO_ENTITLEMENTS="pro,premium"   (comma-separated list)
 // Both can be combined; defaults to ["pro"] if neither is set.
-import { optionalEnv } from './env.ts';
+import { optionalEnv } from "./env.ts";
 
-const DEFAULT_PRO_ENTITLEMENT_IDS = ['pro'] as const;
+const DEFAULT_PRO_ENTITLEMENT_IDS = ["pro"] as const;
 
 export function normalizeEntitlementId(value: string): string {
   return value.trim().toLowerCase();
 }
 
 export function resolveProEntitlementIdsFromEnv(): Set<string> {
-  const csv = optionalEnv('REVENUECAT_PRO_ENTITLEMENTS');
-  const single = optionalEnv('REVENUECAT_PRO_ENTITLEMENT');
+  const csv = optionalEnv("REVENUECAT_PRO_ENTITLEMENTS");
+  const single = optionalEnv("REVENUECAT_PRO_ENTITLEMENT");
 
   const configured = [
-    ...(csv ? csv.split(',') : []),
+    ...(csv ? csv.split(",") : []),
     ...(single ? [single] : []),
   ]
     .map(normalizeEntitlementId)

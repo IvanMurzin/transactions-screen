@@ -1,26 +1,16 @@
-// Smoke test: verifies the example home page renders without throwing.
-// Replace with proper feature tests as the app grows.
+// Baseline smoke test for the template.
+// As you add features, replace this with feature-specific tests.
+// See test/helpers/test_widget_wrapper.dart for utilities.
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:template_app/l10n/app_localizations.dart';
-import 'package:template_app/presentation/example/page/example_home_page.dart';
-
 void main() {
-  testWidgets('ExampleHomePage renders', (tester) async {
+  testWidgets('MaterialApp baseline builds without exception', (tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        localizationsDelegates: [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: AppLocalizations.supportedLocales,
-        home: ExampleHomePage(),
+        home: Scaffold(body: Center(child: Text('ok'))),
       ),
     );
-    expect(find.byType(ExampleHomePage), findsOneWidget);
+    expect(find.text('ok'), findsOneWidget);
   });
 }

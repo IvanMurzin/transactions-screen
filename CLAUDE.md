@@ -45,17 +45,27 @@ Edge Functions over RLS-locked tables.
 5. **`docs/sdd/constitution.md`** for non-negotiables.
 6. **`docs/specs/open/<id>.md`** for the change you're working on.
 
-## Workflow: explore → plan → implement → verify
+## Full project workflow (new project)
+
+```
+/bootstrap             # rename package, scaffold configs, initial commit
+/create-product        # fill docs/product/* from product vision
+/setup-design-system   # create DS from scratch via ui-ux-pro-max
+/create-all-specs      # break product into all specs (interactive, with design docs)
+/mvp-orchestrator      # implement specs one by one (P0 first, 1 spec = 1 subagent)
+```
+
+## Workflow per spec: explore → plan → implement → verify
 
 1. **Explore.** Read the relevant spec, the product docs it links, and
-   the code paths it touches. Use parallel `Explore` agents when scope
-   is uncertain.
+   the code paths it touches. Read the `design_doc` if the spec has one.
+   Use parallel `Explore` agents when scope is uncertain.
 2. **Plan.** State your approach in 1-2 sentences before editing.
    For non-trivial work, write the plan into the spec body.
 3. **Implement.** Stay scoped to the spec. Don't refactor adjacent
-   code unless the spec says so.
-4. **Verify.** Run `scripts/check.sh` (format + analyze + AI
-   consistency). For UI changes, exercise the feature in the simulator.
+   code unless the spec says so. Write tests alongside the feature.
+4. **Verify.** Run `scripts/check.sh` (format + analyze + **tests** +
+   AI consistency). For UI changes, exercise the feature in the simulator.
 
 ## Hard rules
 
@@ -89,9 +99,15 @@ Edge Functions over RLS-locked tables.
   `print()`.
 - **Config:** `AppConfig` reads `--dart-define-from-file=../.config.<flavor>.json`.
   Flags: `ENABLE_FIREBASE`, `ENABLE_REVENUECAT`, both default false.
-- **Design system:** all UI uses `core_ui/components/` and
-  `context.dsColors` / `dsSpacing` / etc. The `/design-system` route
-  shows every component for review.
+- **Design system:** the DS is **created per project** via
+  `/setup-design-system` (invokes ui-ux-pro-max). The template ships
+  only the theme-switching infrastructure. After setup, all UI uses
+  `core_ui/components/` and `context.dsColors` / `dsSpacing` / etc.
+  The `/design-system` route shows every component for review.
+  Never use raw `Color(0x…)` or hard-coded padding in feature code.
+- **Tests:** every new Cubit has unit tests in `test/presentation/<feature>/`,
+  every new Page has a widget smoke test. `flutter test` must pass before
+  a spec is considered done.
 
 ### Supabase backend
 
@@ -149,7 +165,12 @@ function.
 - Every change is captured as a spec in `docs/specs/open/<type>/`.
 - See `docs/sdd/spec_lifecycle.md` for statuses, `docs/sdd/spec_template.md`
   for the schema, `docs/sdd/definition_of_done.md` for the merge bar.
+- Spec format follows [github/spec-kit](https://github.com/github/spec-kit):
+  User scenarios (Given/When/Then), numbered Functional requirements (FR-001…),
+  Success criteria (SC-001…), and a mandatory Design requirements section
+  with `design_doc` link for any UI-touching spec.
 - Use the skills:
+  - `/create-all-specs` — break the **entire product** into all specs.
   - `/create-spec` — one focused change you understand.
   - `/plan-feature` — break a feature area into multiple specs.
   - `/resolve-spec SPEC-####` — implement an existing spec.
@@ -158,18 +179,20 @@ function.
 
 ## Skills
 
-Located in `.claude/skills/<name>/SKILL.md`. Listed by trigger:
+Located in `.claude/skills/<name>/SKILL.md`. Listed in workflow order:
 
 | Skill | When to use |
 | ----- | ----------- |
-| `bootstrap` | Right after cloning the template into a new project dir. |
-| `create-product` | Filling `docs/product/*` from a rough vision. |
+| `bootstrap` | Step 1: right after cloning the template into a new project dir. |
+| `create-product` | Step 2: filling `docs/product/*` from a rough vision. |
+| `setup-design-system` | Step 3: create the project DS from scratch via ui-ux-pro-max. Required before any UI spec. |
+| `create-all-specs` | Step 4: break the entire product into a complete spec backlog (interactive). |
+| `mvp-orchestrator` | Step 5: implement specs one by one, P0 first. |
+| `ui-ux-pro-max` | UI/UX intelligence: invoked by setup-design-system, create-spec, plan-feature, create-all-specs. |
+| `create-spec` | Writing one focused, decision-complete spec (invokes ui-ux-pro-max for UI specs). |
+| `plan-feature` | Turning a product area into a sequenced set of specs (invokes ui-ux-pro-max for UI areas). |
+| `resolve-spec` | Implementing an existing spec end-to-end (runs format + analyze + tests). |
 | `review-core-ui` | Auditing the design system for gaps and violations. |
-| `plan-feature` | Turning a product area into a sequenced set of specs. |
-| `create-spec` | Writing one focused, decision-complete spec. |
-| `resolve-spec` | Implementing an existing spec end-to-end. |
-| `mvp-orchestrator` | Coordinating backlog → spec → implement → review → checks → local commit. |
-| `ui-ux-pro-max` | UI/UX intelligence for design decisions, implementation, and quality review. |
 | `check-ai-consistency` | Verifying CLAUDE.md ↔ AGENTS.md and skill parity. |
 
 ## Subagents
@@ -203,7 +226,7 @@ flutter run --flavor dev --dart-define-from-file=../.config.dev.json
 From repo root:
 
 ```bash
-./scripts/check.sh                # format + analyze + ai-consistency
+./scripts/check.sh                # format + analyze + tests + ai-consistency
 ./scripts/format.sh               # dart format + deno fmt
 ./scripts/analyze.sh              # flutter analyze
 ./scripts/check-ai-consistency.sh # CLAUDE.md ↔ AGENTS.md, skill parity
@@ -232,6 +255,6 @@ From repo root:
 ## What "done" means
 
 A spec is done when every checkbox in `docs/sdd/definition_of_done.md`
-is satisfied: ACs pass, format + analyze clean, l10n synchronized, no
-generated files edited, INDEX.md regenerated, commit message format
-correct.
+is satisfied: ACs pass, **format + analyze + tests** clean, l10n
+synchronized, no generated files edited, unit + widget tests written,
+design doc matched, INDEX.md regenerated, commit message format correct.
