@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:transaction_screen/core/di/get_it.dart';
@@ -43,6 +44,10 @@ class _AppState extends State<App> {
     // Wire AuthRouteGuard once auth pages exist:
     //   _router = buildAppRouter(guards: [AuthRouteGuard(_authCubit)]);
     _router = buildAppRouter();
+    // Remove the native splash once the first frame of the real UI is drawn.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      FlutterNativeSplash.remove();
+    });
   }
 
   @override
