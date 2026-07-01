@@ -11,7 +11,9 @@ Task screen entry point:
 
 ## 1. Demo
 
-> Video walkthrough — to be recorded and attached here.
+<video src="demo.mp4" controls width="360"></video>
+
+▶ [Watch the demo (demo.mp4)](demo.mp4)
 
 ---
 
