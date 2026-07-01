@@ -1,13 +1,13 @@
 import 'package:injectable/injectable.dart';
 
-import 'package:template_app/core/logger/logger.dart';
-import 'package:template_app/core/revenuecat/revenuecat_service.dart';
-import 'package:template_app/core/supabase/supabase_failure_mapper.dart';
-import 'package:template_app/core/types/result.dart';
-import 'package:template_app/data/subscription/data_source/supabase_subscription_data_source.dart';
-import 'package:template_app/domain/profile/repository/i_profile_repository.dart';
-import 'package:template_app/domain/subscription/entity/subscription_entity.dart';
-import 'package:template_app/domain/subscription/repository/i_subscription_repository.dart';
+import 'package:transaction_screen/core/logger/logger.dart';
+import 'package:transaction_screen/core/revenuecat/revenuecat_service.dart';
+import 'package:transaction_screen/core/supabase/supabase_failure_mapper.dart';
+import 'package:transaction_screen/core/types/result.dart';
+import 'package:transaction_screen/data/subscription/data_source/supabase_subscription_data_source.dart';
+import 'package:transaction_screen/domain/profile/repository/i_profile_repository.dart';
+import 'package:transaction_screen/domain/subscription/entity/subscription_entity.dart';
+import 'package:transaction_screen/domain/subscription/repository/i_subscription_repository.dart';
 
 /// RevenueCat-bound subscription repository.
 ///

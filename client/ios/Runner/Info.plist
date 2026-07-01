@@ -49,7 +49,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.example.appname.auth</string>
+			<string>com.example.transactions.auth</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>$(DEEP_LINK_SCHEME)</string>

@@ -6,9 +6,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:template_app/core/config/app_config.dart';
-import 'package:template_app/core/firebase/firebase_initializer.dart';
-import 'package:template_app/core/logger/logger.dart';
+import 'package:transaction_screen/core/config/app_config.dart';
+import 'package:transaction_screen/core/firebase/firebase_initializer.dart';
+import 'package:transaction_screen/core/logger/logger.dart';
 
 /// Generic analytics façade.
 ///

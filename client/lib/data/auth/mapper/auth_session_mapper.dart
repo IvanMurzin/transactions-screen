@@ -1,5 +1,5 @@
-import 'package:template_app/data/auth/dto/auth_session_dto.dart';
-import 'package:template_app/domain/auth/entity/auth_session_entity.dart';
+import 'package:transaction_screen/data/auth/dto/auth_session_dto.dart';
+import 'package:transaction_screen/domain/auth/entity/auth_session_entity.dart';
 
 abstract final class AuthSessionMapper {
   static AuthSessionEntity toEntity(AuthSessionDto dto) {

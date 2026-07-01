@@ -1,4 +1,4 @@
-project_id = "template_app"
+project_id = "transaction_screen"
 
 [api]
 enabled = true

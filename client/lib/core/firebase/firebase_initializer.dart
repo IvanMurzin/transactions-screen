@@ -2,8 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:template_app/core/config/app_config.dart';
-import 'package:template_app/core/logger/logger.dart';
+import 'package:transaction_screen/core/config/app_config.dart';
+import 'package:transaction_screen/core/logger/logger.dart';
 
 abstract final class FirebaseInitializer {
   static bool _initialized = false;

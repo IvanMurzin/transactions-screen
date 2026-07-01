@@ -1,5 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:template_app/core/config/app_config.dart';
+import 'package:transaction_screen/core/config/app_config.dart';
 
 abstract final class SupabaseInitializer {
   static Future<void> init() {

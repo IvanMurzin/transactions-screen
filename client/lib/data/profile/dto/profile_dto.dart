@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:template_app/core/types/json_name.dart';
+import 'package:transaction_screen/core/types/json_name.dart';
 
 part 'profile_dto.freezed.dart';
 part 'profile_dto.g.dart';

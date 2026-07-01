@@ -1,5 +1,5 @@
-import 'package:template_app/core/types/result.dart';
-import 'package:template_app/domain/subscription/entity/subscription_entity.dart';
+import 'package:transaction_screen/core/types/result.dart';
+import 'package:transaction_screen/domain/subscription/entity/subscription_entity.dart';
 
 abstract interface class ISubscriptionRepository {
   /// Asks the backend to re-pull entitlements from RevenueCat for the

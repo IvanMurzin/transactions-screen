@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
-import 'package:template_app/core/config/app_config.dart';
+import 'package:transaction_screen/core/config/app_config.dart';
 
 /// Thin abstraction so the app never talks to `Purchases` directly.
 ///

@@ -1,4 +1,4 @@
-package com.example.appname
+package com.example.transactions
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:template_app/core/local_storage/theme_mode_storage.dart';
+import 'package:transaction_screen/core/local_storage/theme_mode_storage.dart';
 
 @injectable
 class ThemeModeCubit extends Cubit<ThemeMode> {

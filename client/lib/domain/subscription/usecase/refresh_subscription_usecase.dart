@@ -1,8 +1,8 @@
 import 'package:injectable/injectable.dart';
 
-import 'package:template_app/core/types/result.dart';
-import 'package:template_app/domain/subscription/entity/subscription_entity.dart';
-import 'package:template_app/domain/subscription/repository/i_subscription_repository.dart';
+import 'package:transaction_screen/core/types/result.dart';
+import 'package:transaction_screen/domain/subscription/entity/subscription_entity.dart';
+import 'package:transaction_screen/domain/subscription/repository/i_subscription_repository.dart';
 
 @injectable
 class RefreshSubscriptionUseCase {

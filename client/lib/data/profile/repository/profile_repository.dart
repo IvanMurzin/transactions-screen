@@ -1,12 +1,12 @@
 import 'package:injectable/injectable.dart';
 
-import 'package:template_app/core/logger/logger.dart';
-import 'package:template_app/core/supabase/supabase_failure_mapper.dart';
-import 'package:template_app/core/types/result.dart';
-import 'package:template_app/data/profile/data_source/supabase_profile_data_source.dart';
-import 'package:template_app/data/profile/mapper/profile_mapper.dart';
-import 'package:template_app/domain/profile/entity/profile_entity.dart';
-import 'package:template_app/domain/profile/repository/i_profile_repository.dart';
+import 'package:transaction_screen/core/logger/logger.dart';
+import 'package:transaction_screen/core/supabase/supabase_failure_mapper.dart';
+import 'package:transaction_screen/core/types/result.dart';
+import 'package:transaction_screen/data/profile/data_source/supabase_profile_data_source.dart';
+import 'package:transaction_screen/data/profile/mapper/profile_mapper.dart';
+import 'package:transaction_screen/domain/profile/entity/profile_entity.dart';
+import 'package:transaction_screen/domain/profile/repository/i_profile_repository.dart';
 
 @LazySingleton(as: IProfileRepository)
 class ProfileRepository implements IProfileRepository {

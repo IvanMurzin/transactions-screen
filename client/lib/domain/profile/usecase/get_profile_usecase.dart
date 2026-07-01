@@ -1,8 +1,8 @@
 import 'package:injectable/injectable.dart';
 
-import 'package:template_app/core/types/result.dart';
-import 'package:template_app/domain/profile/entity/profile_entity.dart';
-import 'package:template_app/domain/profile/repository/i_profile_repository.dart';
+import 'package:transaction_screen/core/types/result.dart';
+import 'package:transaction_screen/domain/profile/entity/profile_entity.dart';
+import 'package:transaction_screen/domain/profile/repository/i_profile_repository.dart';
 
 @injectable
 class GetProfileUseCase {

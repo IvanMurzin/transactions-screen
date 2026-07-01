@@ -2,12 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'package:template_app/core/config/app_config.dart';
-import 'package:template_app/core/supabase/supabase_constants.dart';
-import 'package:template_app/core/supabase/supabase_edge_functions.dart';
-import 'package:template_app/data/auth/data_source/i_auth_data_source.dart';
-import 'package:template_app/data/auth/dto/auth_session_dto.dart';
-import 'package:template_app/domain/auth/entity/auth_provider.dart';
+import 'package:transaction_screen/core/config/app_config.dart';
+import 'package:transaction_screen/core/supabase/supabase_constants.dart';
+import 'package:transaction_screen/core/supabase/supabase_edge_functions.dart';
+import 'package:transaction_screen/data/auth/data_source/i_auth_data_source.dart';
+import 'package:transaction_screen/data/auth/dto/auth_session_dto.dart';
+import 'package:transaction_screen/domain/auth/entity/auth_provider.dart';
 
 @LazySingleton(as: IAuthDataSource)
 class SupabaseAuthDataSource implements IAuthDataSource {

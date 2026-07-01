@@ -1,5 +1,5 @@
 // Prod flavor overrides — included by Debug-prod / Release-prod / Profile-prod configs.
-PRODUCT_BUNDLE_IDENTIFIER = com.example.appname
-DISPLAY_NAME = Template App
-DEEP_LINK_SCHEME = appname
+PRODUCT_BUNDLE_IDENTIFIER = com.example.transactions
+DISPLAY_NAME = transaction screen
+DEEP_LINK_SCHEME = transactions
 ASSET_CATALOG_APP_ICON_NAME = AppIcon

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:template_app/core/routing/app_page_transitions.dart';
-import 'package:template_app/core/routing/app_routes.dart';
-import 'package:template_app/core/routing/guards/route_guard.dart';
+import 'package:transaction_screen/core/routing/app_page_transitions.dart';
+import 'package:transaction_screen/core/routing/app_routes.dart';
+import 'package:transaction_screen/core/routing/guards/route_guard.dart';
 
 /// Builds a [GoRouter] from a list of atomic [RouteGuard]-s.
 ///

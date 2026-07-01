@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:template_app/core/routing/app_routes.dart';
-import 'package:template_app/core/routing/guards/route_guard.dart';
-import 'package:template_app/presentation/auth/bloc/auth_cubit.dart';
+import 'package:transaction_screen/core/routing/app_routes.dart';
+import 'package:transaction_screen/core/routing/guards/route_guard.dart';
+import 'package:transaction_screen/presentation/auth/bloc/auth_cubit.dart';
 
 /// Sends unauthenticated users to [AppRoutes.signIn] and bounces signed-in
 /// users away from auth pages. The `initial` status is treated as "still

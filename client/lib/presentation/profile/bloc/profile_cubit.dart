@@ -2,12 +2,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:template_app/core/logger/logger.dart';
-import 'package:template_app/core/types/failure.dart';
-import 'package:template_app/core/types/result.dart';
-import 'package:template_app/domain/profile/entity/profile_entity.dart';
-import 'package:template_app/domain/profile/usecase/get_profile_usecase.dart';
-import 'package:template_app/domain/profile/usecase/update_profile_usecase.dart';
+import 'package:transaction_screen/core/logger/logger.dart';
+import 'package:transaction_screen/core/types/failure.dart';
+import 'package:transaction_screen/core/types/result.dart';
+import 'package:transaction_screen/domain/profile/entity/profile_entity.dart';
+import 'package:transaction_screen/domain/profile/usecase/get_profile_usecase.dart';
+import 'package:transaction_screen/domain/profile/usecase/update_profile_usecase.dart';
 
 part 'profile_cubit.freezed.dart';
 part 'profile_state.dart';

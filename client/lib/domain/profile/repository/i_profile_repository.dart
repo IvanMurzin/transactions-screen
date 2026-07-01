@@ -1,5 +1,5 @@
-import 'package:template_app/core/types/result.dart';
-import 'package:template_app/domain/profile/entity/profile_entity.dart';
+import 'package:transaction_screen/core/types/result.dart';
+import 'package:transaction_screen/domain/profile/entity/profile_entity.dart';
 
 abstract interface class IProfileRepository {
   Future<Result<ProfileEntity>> getProfile();

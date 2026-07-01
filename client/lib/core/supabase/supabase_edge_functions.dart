@@ -1,5 +1,5 @@
-import 'package:template_app/core/config/app_config.dart';
-import 'package:template_app/core/logger/logger.dart';
+import 'package:transaction_screen/core/config/app_config.dart';
+import 'package:transaction_screen/core/logger/logger.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

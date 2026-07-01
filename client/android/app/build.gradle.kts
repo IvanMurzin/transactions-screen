@@ -8,7 +8,7 @@ plugins {
 }
 
 // Firebase плагины применяются только для prod-флавора:
-// google-services.json есть только под `com.example.appname` (см. src/prod/).
+// google-services.json есть только под `com.example.transactions` (см. src/prod/).
 // Dev-сборки идут без Firebase, инициализация в Dart обёрнута в try/catch.
 val isProdTaskRequested = gradle.startParameter.taskNames.any {
     it.contains("Prod", ignoreCase = false)
@@ -58,7 +58,7 @@ val debugKeystoreFile = rootProject.file("keystores/debug.keystore")
 val useProjectDebugKeystore = debugKeystoreFile.exists()
 
 android {
-    namespace = "com.example.appname"
+    namespace = "com.example.transactions"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -91,7 +91,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.appname"
+        applicationId = "com.example.transactions"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
@@ -105,8 +105,8 @@ android {
             dimension = "env"
             applicationIdSuffix = ".dev"
             versionNameSuffix = "-dev"
-            resValue("string", "app_name", "Template App (dev)")
-            manifestPlaceholders["deepLinkScheme"] = "appnamedev"
+            resValue("string", "app_name", "transaction screen (dev)")
+            manifestPlaceholders["deepLinkScheme"] = "transactionsdev"
             // Dev release сборки подписываются debug-ключом — production keystore не требуется.
             signingConfig = if (useProjectDebugKeystore) {
                 signingConfigs.getByName("debugProject")
@@ -116,8 +116,8 @@ android {
         }
         create("prod") {
             dimension = "env"
-            resValue("string", "app_name", "Template App")
-            manifestPlaceholders["deepLinkScheme"] = "appname"
+            resValue("string", "app_name", "transaction screen")
+            manifestPlaceholders["deepLinkScheme"] = "transactions"
             if (hasValidReleaseSigning) {
                 signingConfig = signingConfigs.getByName("release")
             }

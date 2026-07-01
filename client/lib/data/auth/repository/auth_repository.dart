@@ -3,18 +3,18 @@ import 'dart:async';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'package:template_app/core/config/app_config.dart';
-import 'package:template_app/core/logger/logger.dart';
-import 'package:template_app/core/supabase/supabase_failure_mapper.dart';
-import 'package:template_app/core/types/failure.dart';
-import 'package:template_app/core/types/result.dart';
-import 'package:template_app/data/auth/data_source/i_auth_data_source.dart';
-import 'package:template_app/data/auth/dto/auth_session_dto.dart';
-import 'package:template_app/data/auth/mapper/auth_session_mapper.dart';
-import 'package:template_app/domain/auth/entity/auth_provider.dart';
-import 'package:template_app/domain/auth/entity/auth_session_entity.dart';
-import 'package:template_app/domain/auth/entity/otp_verification_entity.dart';
-import 'package:template_app/domain/auth/repository/i_auth_repository.dart';
+import 'package:transaction_screen/core/config/app_config.dart';
+import 'package:transaction_screen/core/logger/logger.dart';
+import 'package:transaction_screen/core/supabase/supabase_failure_mapper.dart';
+import 'package:transaction_screen/core/types/failure.dart';
+import 'package:transaction_screen/core/types/result.dart';
+import 'package:transaction_screen/data/auth/data_source/i_auth_data_source.dart';
+import 'package:transaction_screen/data/auth/dto/auth_session_dto.dart';
+import 'package:transaction_screen/data/auth/mapper/auth_session_mapper.dart';
+import 'package:transaction_screen/domain/auth/entity/auth_provider.dart';
+import 'package:transaction_screen/domain/auth/entity/auth_session_entity.dart';
+import 'package:transaction_screen/domain/auth/entity/otp_verification_entity.dart';
+import 'package:transaction_screen/domain/auth/repository/i_auth_repository.dart';
 
 @LazySingleton(as: IAuthRepository)
 class AuthRepository implements IAuthRepository {

@@ -1,5 +1,5 @@
-import 'package:template_app/data/profile/dto/profile_dto.dart';
-import 'package:template_app/domain/profile/entity/profile_entity.dart';
+import 'package:transaction_screen/data/profile/dto/profile_dto.dart';
+import 'package:transaction_screen/domain/profile/entity/profile_entity.dart';
 
 abstract final class ProfileMapper {
   static ProfileEntity toEntity(ProfileDto dto) {

@@ -4,14 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:template_app/core/logger/logger.dart';
-import 'package:template_app/core/types/failure.dart';
-import 'package:template_app/core/types/result.dart';
-import 'package:template_app/domain/subscription/entity/subscription_entity.dart';
-import 'package:template_app/domain/subscription/repository/i_subscription_repository.dart';
-import 'package:template_app/domain/subscription/usecase/refresh_subscription_usecase.dart';
-import 'package:template_app/domain/subscription/usecase/restore_purchases_usecase.dart';
-import 'package:template_app/presentation/auth/bloc/auth_cubit.dart';
+import 'package:transaction_screen/core/logger/logger.dart';
+import 'package:transaction_screen/core/types/failure.dart';
+import 'package:transaction_screen/core/types/result.dart';
+import 'package:transaction_screen/domain/subscription/entity/subscription_entity.dart';
+import 'package:transaction_screen/domain/subscription/repository/i_subscription_repository.dart';
+import 'package:transaction_screen/domain/subscription/usecase/refresh_subscription_usecase.dart';
+import 'package:transaction_screen/domain/subscription/usecase/restore_purchases_usecase.dart';
+import 'package:transaction_screen/presentation/auth/bloc/auth_cubit.dart';
 
 part 'subscription_cubit.freezed.dart';
 part 'subscription_state.dart';

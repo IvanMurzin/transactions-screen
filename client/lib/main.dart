@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-import 'package:template_app/app.dart';
-import 'package:template_app/core/bloc/bloc_observer.dart';
-import 'package:template_app/core/config/app_config.dart';
-import 'package:template_app/core/di/di.dart';
-import 'package:template_app/core/firebase/firebase_initializer.dart';
-import 'package:template_app/core/logger/logger.dart';
-import 'package:template_app/core/revenuecat/revenuecat_initializer.dart';
-import 'package:template_app/core/supabase/supabase_initializer.dart';
+import 'package:transaction_screen/app.dart';
+import 'package:transaction_screen/core/bloc/bloc_observer.dart';
+import 'package:transaction_screen/core/config/app_config.dart';
+import 'package:transaction_screen/core/di/di.dart';
+import 'package:transaction_screen/core/firebase/firebase_initializer.dart';
+import 'package:transaction_screen/core/logger/logger.dart';
+import 'package:transaction_screen/core/revenuecat/revenuecat_initializer.dart';
+import 'package:transaction_screen/core/supabase/supabase_initializer.dart';
 
 Future<void> main() async {
   Bloc.observer = AppBlocObserver();

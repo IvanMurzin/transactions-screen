@@ -3,21 +3,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:template_app/core/di/get_it.dart';
-import 'package:template_app/core/localization/locale_cubit.dart';
-import 'package:template_app/core/localization/locale_state.dart';
-import 'package:template_app/core/routing/app_router.dart';
+import 'package:transaction_screen/core/di/get_it.dart';
+import 'package:transaction_screen/core/localization/locale_cubit.dart';
+import 'package:transaction_screen/core/localization/locale_state.dart';
+import 'package:transaction_screen/core/routing/app_router.dart';
 // AuthRouteGuard is wired only after the product registers /sign-in,
 // /sign-up and /sign-up/otp pages — otherwise go_router would redirect
 // unauthenticated users to a route it cannot resolve. See
 // `docs/architecture/patterns/auth_route_guard.md`.
-// import 'package:template_app/core/routing/guards/auth_route_guard.dart';
-import 'package:template_app/core_ui/theme/app_theme.dart';
-import 'package:template_app/core_ui/theme/theme_mode_cubit.dart';
-import 'package:template_app/l10n/app_localizations.dart';
-import 'package:template_app/presentation/auth/bloc/auth_cubit.dart';
-import 'package:template_app/presentation/profile/bloc/profile_cubit.dart';
-import 'package:template_app/presentation/subscription/bloc/subscription_cubit.dart';
+// import 'package:transaction_screen/core/routing/guards/auth_route_guard.dart';
+import 'package:transaction_screen/core_ui/theme/app_theme.dart';
+import 'package:transaction_screen/core_ui/theme/theme_mode_cubit.dart';
+import 'package:transaction_screen/l10n/app_localizations.dart';
+import 'package:transaction_screen/presentation/auth/bloc/auth_cubit.dart';
+import 'package:transaction_screen/presentation/profile/bloc/profile_cubit.dart';
+import 'package:transaction_screen/presentation/subscription/bloc/subscription_cubit.dart';
 
 class App extends StatefulWidget {
   const App({super.key});

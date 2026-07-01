@@ -3,9 +3,9 @@ import 'dart:ui';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:template_app/core/local_storage/locale_storage.dart';
-import 'package:template_app/core/localization/locale_state.dart';
-import 'package:template_app/core/localization/system_locale_provider.dart';
+import 'package:transaction_screen/core/local_storage/locale_storage.dart';
+import 'package:transaction_screen/core/localization/locale_state.dart';
+import 'package:transaction_screen/core/localization/system_locale_provider.dart';
 
 /// Owns the user's chosen locale.
 ///

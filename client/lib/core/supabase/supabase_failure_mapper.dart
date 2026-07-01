@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'package:template_app/core/di/get_it.dart';
-import 'package:template_app/core/session/unauthorized_notifier.dart';
-import 'package:template_app/core/supabase/supabase_edge_functions.dart';
-import 'package:template_app/core/types/failure.dart';
+import 'package:transaction_screen/core/di/get_it.dart';
+import 'package:transaction_screen/core/session/unauthorized_notifier.dart';
+import 'package:transaction_screen/core/supabase/supabase_edge_functions.dart';
+import 'package:transaction_screen/core/types/failure.dart';
 
 /// Normalizes any Supabase / Edge Function error into a stable [Failure]
 /// the rest of the app can switch on. Codes are lower-snake-case strings

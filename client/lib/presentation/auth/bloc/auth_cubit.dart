@@ -4,13 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:template_app/core/logger/logger.dart';
-import 'package:template_app/core/session/unauthorized_notifier.dart';
-import 'package:template_app/core/types/result.dart';
-import 'package:template_app/domain/auth/entity/auth_session_entity.dart';
-import 'package:template_app/domain/auth/usecase/delete_account_usecase.dart';
-import 'package:template_app/domain/auth/usecase/sign_out_usecase.dart';
-import 'package:template_app/domain/auth/usecase/watch_session_usecase.dart';
+import 'package:transaction_screen/core/logger/logger.dart';
+import 'package:transaction_screen/core/session/unauthorized_notifier.dart';
+import 'package:transaction_screen/core/types/result.dart';
+import 'package:transaction_screen/domain/auth/entity/auth_session_entity.dart';
+import 'package:transaction_screen/domain/auth/usecase/delete_account_usecase.dart';
+import 'package:transaction_screen/domain/auth/usecase/sign_out_usecase.dart';
+import 'package:transaction_screen/domain/auth/usecase/watch_session_usecase.dart';
 
 part 'auth_cubit.freezed.dart';
 part 'auth_state.dart';
