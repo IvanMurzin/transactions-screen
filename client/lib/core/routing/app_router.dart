@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:transaction_screen/core/di/get_it.dart';
 import 'package:transaction_screen/core/routing/app_page_transitions.dart';
 import 'package:transaction_screen/core/routing/app_routes.dart';
 import 'package:transaction_screen/core/routing/guards/route_guard.dart';
+import 'package:transaction_screen/presentation/transactions/bloc/transactions_cubit.dart';
+import 'package:transaction_screen/presentation/transactions/pages/transactions_page.dart';
 
 /// Builds a [GoRouter] from a list of atomic [RouteGuard]-s.
 ///
@@ -36,30 +40,17 @@ GoRouter buildAppRouter({
       return null;
     },
     routes: [
-      // TODO(setup-product): replace with your first real screen.
-      // Wire AuthRouteGuard and add /sign-in, /sign-up routes once auth UI exists.
-      // See docs/architecture/patterns/auth_route_guard.md
       GoRoute(
         path: AppRoutes.home,
-        pageBuilder: (context, state) =>
-            slideTransition(context, state, const _PlaceholderHomePage()),
+        pageBuilder: (context, state) => slideTransition(
+          context,
+          state,
+          BlocProvider<TransactionsCubit>(
+            create: (_) => getIt<TransactionsCubit>()..load(),
+            child: const TransactionsPage(),
+          ),
+        ),
       ),
     ],
   );
-}
-
-class _PlaceholderHomePage extends StatelessWidget {
-  const _PlaceholderHomePage();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          'Run /setup-design-system, then /create-all-specs\nto start building your product.',
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
 }

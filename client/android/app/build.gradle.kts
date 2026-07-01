@@ -7,17 +7,6 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-// Firebase плагины применяются только для prod-флавора:
-// google-services.json есть только под `com.example.transactions` (см. src/prod/).
-// Dev-сборки идут без Firebase, инициализация в Dart обёрнута в try/catch.
-val isProdTaskRequested = gradle.startParameter.taskNames.any {
-    it.contains("Prod", ignoreCase = false)
-}
-if (isProdTaskRequested) {
-    apply(plugin = "com.google.gms.google-services")
-    apply(plugin = "com.google.firebase.crashlytics")
-}
-
 val keystorePropertiesFile = rootProject.file("key.properties")
 val keystoreProperties = Properties()
 if (keystorePropertiesFile.exists()) {
@@ -60,6 +49,7 @@ val useProjectDebugKeystore = debugKeystoreFile.exists()
 android {
     namespace = "com.example.transactions"
     compileSdk = flutter.compileSdkVersion
+    buildToolsVersion = "36.1.0"
     ndkVersion = flutter.ndkVersion
 
     compileOptions {

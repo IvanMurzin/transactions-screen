@@ -8,5 +8,22 @@
   "designSystemPreviewTitle": "Превью дизайн-системы",
   "exampleHomeTitle": "Добро пожаловать",
   "exampleHomeBody": "Это пример экрана — замените его своей первой фичей.",
-  "exampleHomeOpenDesignSystem": "Открыть превью дизайн-системы"
+  "exampleHomeOpenDesignSystem": "Открыть превью дизайн-системы",
+  "transactionsTitle": "Транзакции",
+  "transactionsEmptyTitle": "Пока нет транзакций",
+  "transactionsEmptyBody": "Здесь появятся ваши транзакции, как только вы начнёте пользоваться картой.",
+  "transactionsErrorTitle": "Не удалось загрузить транзакции",
+  "transactionsToday": "Сегодня",
+  "transactionsYesterday": "Вчера",
+  "transactionStatusPending": "В обработке",
+  "transactionStatusSettled": "Проведена",
+  "transactionStatusDeclined": "Отклонена",
+  "transactionStatusReversed": "Возврат",
+  "settingsTheme": "Тема",
+  "themeSystem": "Системная",
+  "themeLight": "Светлая",
+  "themeDark": "Тёмная",
+  "settingsLanguage": "Язык",
+  "languageEnglish": "English",
+  "languageRussian": "Русский"
 }

@@ -11,5 +11,25 @@
   "designSystemPreviewTitle": "Design system preview",
   "exampleHomeTitle": "Welcome",
   "exampleHomeBody": "This is a placeholder screen — replace it with your first feature.",
-  "exampleHomeOpenDesignSystem": "Open design system preview"
+  "exampleHomeOpenDesignSystem": "Open design system preview",
+  "transactionsTitle": "Transactions",
+  "@transactionsTitle": {
+    "description": "App bar title for the Transactions screen."
+  },
+  "transactionsEmptyTitle": "No transactions yet",
+  "transactionsEmptyBody": "Your transactions will appear here once you start using your card.",
+  "transactionsErrorTitle": "Couldn't load transactions",
+  "transactionsToday": "Today",
+  "transactionsYesterday": "Yesterday",
+  "transactionStatusPending": "Pending",
+  "transactionStatusSettled": "Settled",
+  "transactionStatusDeclined": "Declined",
+  "transactionStatusReversed": "Reversed",
+  "settingsTheme": "Theme",
+  "themeSystem": "System",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "settingsLanguage": "Language",
+  "languageEnglish": "English",
+  "languageRussian": "Русский"
 }

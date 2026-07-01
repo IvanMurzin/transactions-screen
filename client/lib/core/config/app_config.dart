@@ -27,7 +27,6 @@ final class AppConfig {
     required this.supabaseAnonKey,
     required this.oauthRedirectUri,
     required this.isOtpEnabled,
-    required this.enableFirebase,
     required this.enableRevenueCat,
     required this.revenueCatApiKey,
     required this.logApiResponses,
@@ -60,13 +59,11 @@ final class AppConfig {
   /// sign-up. Default: false.
   final bool isOtpEnabled;
 
-  final bool enableFirebase;
   final bool enableRevenueCat;
   final String revenueCatApiKey;
   final bool logApiResponses;
 
   bool get isProdRelease => flavor == AppFlavor.prod && kReleaseMode;
-  bool get analyticsActive => enableFirebase && isProdRelease;
 
   /// True when at least one OAuth provider can be attempted. Drives whether
   /// the auth UI shows social sign-in buttons.
@@ -104,7 +101,6 @@ final class AppConfig {
       supabaseAnonKey: values['SUPABASE_ANON_KEY']!,
       oauthRedirectUri: const String.fromEnvironment('OAUTH_REDIRECT_URI'),
       isOtpEnabled: const bool.fromEnvironment('IS_OTP_ENABLED'),
-      enableFirebase: const bool.fromEnvironment('ENABLE_FIREBASE'),
       enableRevenueCat: const bool.fromEnvironment('ENABLE_REVENUECAT'),
       revenueCatApiKey: const String.fromEnvironment('REVENUECAT_API_KEY'),
       logApiResponses: const bool.fromEnvironment('LOG_API_RESPONSES'),

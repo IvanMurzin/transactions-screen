@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:transaction_screen/core_ui/theme/status_colors.dart';
+
 // ---------------------------------------------------------------------------
 // Bare Material 3 baseline.
 //
@@ -14,12 +16,24 @@ import 'package:flutter/material.dart';
 // TODO(setup-design-system): replace with project brand color
 const Color _seedColor = Color(0xFF6750A4);
 
+final ColorScheme _lightScheme = ColorScheme.fromSeed(
+  seedColor: _seedColor,
+  brightness: Brightness.light,
+);
+
+final ColorScheme _darkScheme = ColorScheme.fromSeed(
+  seedColor: _seedColor,
+  brightness: Brightness.dark,
+);
+
 final ThemeData lightTheme = ThemeData(
   useMaterial3: true,
-  colorScheme: ColorScheme.fromSeed(seedColor: _seedColor, brightness: Brightness.light),
+  colorScheme: _lightScheme,
+  extensions: [StatusColors.light(_lightScheme)],
 );
 
 final ThemeData darkTheme = ThemeData(
   useMaterial3: true,
-  colorScheme: ColorScheme.fromSeed(seedColor: _seedColor, brightness: Brightness.dark),
+  colorScheme: _darkScheme,
+  extensions: [StatusColors.dark(_darkScheme)],
 );
