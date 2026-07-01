@@ -11,9 +11,7 @@ Task screen entry point:
 
 ## 1. Demo
 
-<video src="demo.mp4" controls width="360"></video>
-
-▶ [Watch the demo (demo.mp4)](demo.mp4)
+https://github.com/user-attachments/assets/13e27261-9d66-4034-96da-4c22866f5e42
 
 ---
 
